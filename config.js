@@ -21,7 +21,7 @@ window.APP_CONFIG = {
   VARIANT_ORDER: 'price-first',
 
   LANGS: ['ru', 'kk', 'en'],
-  DEFAULT_LANG: 'ru',
+  DEFAULT_LANG: 'kk',
 
   // Ключи localStorage
   CART_KEY: 'menu_cart_v1',
