@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" fill="#fff">
+  <circle cx="120" cy="36" r="28" fill="none" stroke="#fff" stroke-width="6"/>
+  <path d="M104 36c0-9 7-16 16-16v32c-9 0-16-7-16-16z"/>
+  <text x="120" y="104" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="10">DALA</text>
+</svg>

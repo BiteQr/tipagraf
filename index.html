@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e10">
+  <title>Меню</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ LOADER ============ -->
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <div class="loader__spinner"></div>
+    <p class="loader__error" hidden></p>
+  </div>
+
+  <!-- ============ 1. WELCOME SCREEN ============ -->
+  <section id="welcome" class="welcome" hidden>
+    <div class="welcome__bg">
+      <img class="welcome__img" alt="">
+      <video class="welcome__video" autoplay loop muted playsinline hidden></video>
+      <div class="welcome__overlay"></div>
+    </div>
+
+    <div class="welcome__content">
+      <nav class="welcome__langs" aria-label="Language"></nav>
+
+      <div class="welcome__center">
+        <img class="welcome__logo" alt="">
+        <p class="welcome__tagline"></p>
+      </div>
+
+      <div class="welcome__buttons"></div>
+    </div>
+  </section>
+
+  <!-- ============ 2. MENU PAGE ============ -->
+  <section id="menu" class="menu" hidden>
+    <header class="topbar">
+      <button class="icon-btn icon-btn--dark" data-action="go-welcome" data-i18n-aria="back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <a class="topbar__brand" href="#/menu" data-action="to-top">
+        <img class="topbar__logo" alt="">
+      </a>
+
+      <div class="lang">
+        <button class="lang__btn" data-action="toggle-lang" aria-haspopup="true" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h10v2H9.4c-.5 2.6-1.6 4.8-3.2 6.5 1 .8 2.2 1.5 3.6 2l-.7 1.9c-1.7-.6-3.1-1.5-4.3-2.5C3.6 15 2.4 15.8 1 16.4L.2 14.6c1.2-.5 2.3-1.2 3.3-2C2.6 11.4 1.9 10 1.4 8.6l1.9-.6c.4 1.1 1 2.2 1.7 3.1 1.1-1.4 1.9-3.1 2.3-5.1H3V4zm13.5 4h2l4.5 12h-2.1l-1.1-3h-4.6l-1.1 3H12l4.5-12zm-.6 7h3.2l-1.6-4.4L15.9 15z"/></svg>
+          <span class="lang__current">RU</span>
+        </button>
+        <div class="lang__list" role="menu" hidden></div>
+      </div>
+    </header>
+
+    <main class="menu__main">
+      <div class="hscroll promos" id="promos"></div>
+
+      <label class="search">
+        <svg class="search__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" enterkeyhint="search">
+        <button class="search__clear" type="button" data-action="clear-search" hidden aria-label="Clear">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </label>
+
+      <div class="hscroll cats" id="cats"></div>
+
+      <nav class="pills" id="pills"></nav>
+
+      <div id="sections"></div>
+
+      <p class="not-found" id="notFound" hidden></p>
+    </main>
+
+    <!-- Floating buttons -->
+    <button class="fab fab-top is-hidden" data-action="to-top" data-i18n-aria="up">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+    </button>
+
+    <button class="fab fab-cart is-hidden" data-action="open-cart" data-i18n-aria="cart">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18l-1.6 8.4A2 2 0 0 1 17.4 20H6.6a2 2 0 0 1-2-1.6L3 10z"/><path d="M8 10l3-6M16 10l-3-6M9 14v3M12 14v3M15 14v3"/></svg>
+      <span class="fab-cart__sum">0 ₸</span>
+      <span class="fab-cart__count">0</span>
+    </button>
+  </section>
+
+  <!-- ============ 3. CART ============ -->
+  <aside id="cart" class="cart" aria-hidden="true">
+    <div class="cart__scroll">
+      <div class="cart__inner">
+        <div class="cart__head">
+          <button class="icon-btn icon-btn--dark" data-action="close-cart" data-i18n-aria="back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <h2 class="cart__title" data-i18n="cartTitle"></h2>
+        </div>
+        <div class="cart__body"></div>
+      </div>
+    </div>
+    <div class="cart__foot">
+      <button class="order-btn" data-action="order" data-i18n="order"></button>
+    </div>
+  </aside>
+
+  <!-- ============ MODALS ============ -->
+  <div id="promoModal" class="overlay" hidden>
+    <div class="overlay__panel" role="dialog" aria-modal="true">
+      <button class="overlay__close" data-action="close-overlay" data-i18n-aria="close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="overlay__content"></div>
+    </div>
+  </div>
+
+  <div id="variantSheet" class="overlay" hidden>
+    <div class="overlay__panel overlay__panel--sheet" role="dialog" aria-modal="true">
+      <button class="overlay__close" data-action="close-overlay" data-i18n-aria="close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="overlay__content"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============ SCRIPTS (порядок важен) ============ -->
+  <script src="config.js"></script>
+  <script src="mock-data.js"></script>
+  <script src="utils.js"></script>
+  <script src="i18n.js"></script>
+  <script src="api.js"></script>
+  <script src="cart.js"></script>
+  <script src="welcome.js"></script>
+  <script src="menu.js"></script>
+  <script src="cart-view.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
